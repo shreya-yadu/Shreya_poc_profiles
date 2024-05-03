@@ -1,0 +1,32 @@
+# This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
+inputs:
+  - name: rsIdentifies
+    app_defaults:
+      table: TAM_SHREYA_DEMO.MARKETING_WEBSITE.IDENTIFIES
+    occurred_at_col: timestamp
+    ids:
+      - select: "user_id"
+        type: user_id
+        entity: user
+        to_default_stitcher: true
+      - select: "anonymous_id"
+        type: anonymous_id
+        entity: user
+        to_default_stitcher: true
+      - select: "lower(email)"
+        type: email
+        entity: user
+        to_default_stitcher: true
+  - name: rsTracks
+    app_defaults:
+      table: TAM_SHREYA_DEMO.MARKETING_WEBSITE.TRACKS
+    occurred_at_col: timestamp
+    ids:
+      - select: "user_id"
+        type: user_id
+        entity: user
+        to_default_stitcher: true
+      - select: "anonymous_id"
+        type: anonymous_id
+        entity: user
+        to_default_stitcher: true
