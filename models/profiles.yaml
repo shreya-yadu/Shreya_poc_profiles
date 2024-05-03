@@ -45,3 +45,4 @@ models:
       features:
         - user_lifespan
         - days_active
+        - products_viewed
