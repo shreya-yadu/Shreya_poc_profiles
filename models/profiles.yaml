@@ -38,7 +38,7 @@ models:
             description: No. of days a customer was active
         - entity_var:
             name: products_viewed
-            select: count(product_name) group by anonymous_id
+            select: count(product_name)
             from: inputs/rsMarketingProductViewed
             where: timestamp >= '2024-01-01'
 
