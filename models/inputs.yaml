@@ -1,6 +1,6 @@
 # This is a sample file, for detailed reference see: https://rudderlabs.github.io/pywht/
 inputs:
-  - name: rsIdentifies
+  - name: rsMarketingIdentifies
     app_defaults:
       table: TAM_SHREYA_DEMO.MARKETING_WEBSITE.IDENTIFIES
     occurred_at_col: timestamp
@@ -17,7 +17,7 @@ inputs:
         type: email
         entity: user
         to_default_stitcher: true
-  - name: rsTracks
+  - name: rsMarketingTracks
     app_defaults:
       table: TAM_SHREYA_DEMO.MARKETING_WEBSITE.TRACKS
     occurred_at_col: timestamp
@@ -30,3 +30,19 @@ inputs:
         type: anonymous_id
         entity: user
         to_default_stitcher: true
+  - name: rsMarketingPages
+    app_defaults:
+      table: TAM_SHREYA_DEMO.MARKETING_WEBSITE.PAGES
+    occurred_at_col: timestamp
+    ids:
+      - select: ANONYMOUS_ID
+        type: anonymous_id
+        entity: user
+  - name: rsMarketingProductViewed
+    app_defaults:
+      table: MARKETING_WEBSITE.PRODUCT_VIEWED
+    occurred_at_col: timestamp
+    ids:
+      - select: anonymous_id
+        type: anonymous_id
+        entity: user  

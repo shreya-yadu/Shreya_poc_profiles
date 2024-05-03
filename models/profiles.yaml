@@ -6,8 +6,10 @@ models:
       validity_time: 24h # 1 day
       entity_key: user
       edge_sources:
-        - from: inputs/rsIdentifies
-        - from: inputs/rsTracks
+        - from: inputs/rsMarketingIdentifies
+        - from: inputs/rsMarketingTracks
+        - from: inputs/rsMarketingPages
+        - from: inputs/rsMarketingProductViewed
   - name: user_profile
     model_type: feature_table_model
     model_spec:
@@ -17,11 +19,11 @@ models:
         - entity_var:
             name: first_seen
             select: min(timestamp::date)
-            from: inputs/rsTracks
+            from: inputs/rsMarketingTracks
         - entity_var:
             name: last_seen
             select: max(timestamp::date)
-            from: inputs/rsTracks
+            from: inputs/rsMarketingTracks
         - entity_var:
             name: user_lifespan
             select: last_seen - first_seen
@@ -32,8 +34,14 @@ models:
         - entity_var:
             name: days_active
             select: count(distinct timestamp::date)
-            from: inputs/rsTracks
+            from: inputs/rsMarketingTracks
             description: No. of days a customer was active
+        - entity_var:
+            name: products_viewed
+            select: count(product_name) group by anonymous_id
+            from: inputs/rsMarketingProductViewed
+            where: timestamp >= '2024-01-01'
+
       features:
         - user_lifespan
         - days_active

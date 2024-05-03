@@ -1,5 +1,5 @@
 # Project name
-name: sample_attribution
+name: Profiles Project
 
 # Project's yaml schema version
 schema_version: 40
@@ -18,6 +18,14 @@ model_folders:
 # Entities in this project and their ids.
 entities:
   - name: user
+    # by commenting the line below you can switch to default id stitcher for this entity.
+    # Default ID stitcher is recommended if ID edges can come from multiple library packages.
+    id_stitcher: models/user_id_stitcher
+    id_types:
+      - user_id
+      - anonymous_id
+      - email
+  - name: product
     # by commenting the line below you can switch to default id stitcher for this entity.
     # Default ID stitcher is recommended if ID edges can come from multiple library packages.
     id_stitcher: models/user_id_stitcher
