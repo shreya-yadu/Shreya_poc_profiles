@@ -27,11 +27,11 @@ models:
             from: inputs/rsMarketingTracks
         - entity_var:
             name: website_user_lifespan
-            select: last_seen - first_seen
+            select: website_last_seen - website_first_seen
             description: Life Time Value of a customer
             dependencies:
-              - first_seen
-              - last_seen
+              - website_last_seen
+              - website_first_seen
         - entity_var:
             name: website_days_active
             select: count(distinct timestamp::date)
