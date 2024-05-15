@@ -9,8 +9,8 @@ models:
         - from: inputs/rsMarketingIdentifies
         - from: inputs/rsMarketingTracks
         - from: inputs/rsMarketingPages
-        #- from: inputs/rsMarketingProductViewed
-        #- from: inputs/rsMarketingAddedToCart
+        - from: inputs/rsMarketingProductViewed
+        - from: inputs/rsMarketingAddedToCart
   - name: user_profile
     model_type: feature_table_model
     model_spec:
@@ -57,4 +57,4 @@ models:
         - website_days_active
         - website_products_viewed
         - website_products_added_to_cart
-        - website_days_since_last_active
+        - website_days_since_last_activity
