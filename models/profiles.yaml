@@ -58,3 +58,4 @@ models:
         - website_days_active
         - website_products_viewed
         - website_products_added_to_cart
+        - website_days_since_last_active
