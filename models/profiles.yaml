@@ -48,7 +48,7 @@ models:
             from: inputs/rsMarketingAddedToCart
             where: timestamp >= '2024-01-01' 
         - entity_var:
-            name: website_days_since_last_active
+            name: website_days_since_last_activity
             select: datediff(day, timestamp, current_timestamp)
             from: inputs/rsMarketingTracks        
 
