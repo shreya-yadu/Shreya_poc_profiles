@@ -9,7 +9,8 @@ models:
         - from: inputs/rsMarketingIdentifies
         - from: inputs/rsMarketingTracks
         - from: inputs/rsMarketingPages
-        - from: inputs/rsMarketingProductViewed
+        #- from: inputs/rsMarketingProductViewed
+        #- from: inputs/rsMarketingAddedToCart
   - name: user_profile
     model_type: feature_table_model
     model_spec:
@@ -17,32 +18,43 @@ models:
       entity_key: user
       vars:
         - entity_var:
-            name: first_seen
+            name: website_first_seen
             select: min(timestamp::date)
             from: inputs/rsMarketingTracks
         - entity_var:
-            name: last_seen
+            name: website_last_seen
             select: max(timestamp::date)
             from: inputs/rsMarketingTracks
         - entity_var:
-            name: user_lifespan
+            name: website_user_lifespan
             select: last_seen - first_seen
             description: Life Time Value of a customer
             dependencies:
               - first_seen
               - last_seen
         - entity_var:
-            name: days_active
+            name: website_days_active
             select: count(distinct timestamp::date)
             from: inputs/rsMarketingTracks
             description: No. of days a customer was active
         - entity_var:
-            name: products_viewed
+            name: website_products_viewed
             select: count(product_name)
             from: inputs/rsMarketingProductViewed
             where: timestamp >= '2024-01-01'
+        - entity_var:
+            name: website_products_added_to_cart
+            select: count(product_name)
+            from: inputs/rsMarketingAddedToCart
+            where: timestamp >= '2024-01-01' 
+        - entity_var:
+            name: website_days_since_last_active
+            select: datediff(day, timestamp, current_timestamp)
+            from: inputs/rsMarketingAddedToCart
+            where: timestamp >= '2024-01-01'           
 
       features:
-        - user_lifespan
-        - days_active
-        - products_viewed
+        - website_user_lifespan
+        - website_days_active
+        - website_products_viewed
+        - website_products_added_to_cart

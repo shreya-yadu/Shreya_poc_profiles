@@ -46,3 +46,30 @@ inputs:
       - select: anonymous_id
         type: anonymous_id
         entity: user  
+  - name: rsMarketingAddedToCart
+    app_defaults:
+      table: MARKETING_WEBSITE.ADDED_TO_CART
+    occurred_at_col: timestamp
+    ids:
+      - select: anonymous_id
+        type: anonymous_id
+        entity: user
+  - name: rsMarketingFormSubmit
+    app_defaults:
+      table: MARKETING_WEBSITE.FORM_SUBMIT
+    occurred_at_col: timestamp
+    ids:
+      - select: anonymous_id
+        type: anonymous_id
+        entity: user
+      - select: lower(USER_ID) #good to add lower() since the user_id here is an email 
+        type: email
+        entity: user  
+  - name: rsMarketingProductViewed
+    app_defaults:
+      table: MARKETING_WEBSITE.PRODUCT_VIEWED
+    occurred_at_col: timestamp
+    ids:
+      - select: anonymous_id
+        type: anonymous_id
+        entity: user
