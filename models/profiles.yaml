@@ -9,8 +9,8 @@ models:
         - from: inputs/rsMarketingIdentifies
         - from: inputs/rsMarketingTracks
         - from: inputs/rsMarketingPages
-        - from: inputs/rsMarketingProductViewed
-        - from: inputs/rsMarketingAddedToCart
+        #- from: inputs/rsMarketingProductViewed
+        #- from: inputs/rsMarketingAddedToCart
   - name: user_profile
     model_type: feature_table_model
     model_spec:
