@@ -49,8 +49,9 @@ models:
             where: timestamp >= '2024-01-01' 
         - entity_var:
             name: website_days_since_last_activity
-            select: any_value(datediff(day, timestamp, current_timestamp))
-            from: inputs/rsMarketingTracks        
+            select: any_value(datediff(day, website_last_seen, current_timestamp))
+            dependencies:
+              - website_last_seen
 
       features:
         - website_user_lifespan
